@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:todoyee/screen/add_task_screen.dart';
 import 'package:todoyee/widget/task_list.dart';
 
 class TaskScreen extends StatelessWidget {
@@ -10,7 +11,12 @@ class TaskScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => AddTaskScreen(),
+          );
+        },
       ),
       backgroundColor: Colors.lightBlueAccent,
       body: Column(
@@ -67,7 +73,7 @@ class TaskScreen extends StatelessWidget {
               ),
               child: TaskList(),
             ),
-          )
+          ),
         ],
       ),
     );
