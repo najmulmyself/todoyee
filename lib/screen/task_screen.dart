@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:todoyee/widget/task_list.dart';
 
 class TaskScreen extends StatelessWidget {
   @override
@@ -55,6 +56,7 @@ class TaskScreen extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
               // height: 300, //NO  NEED TO ADD HEIGHT , EXPANDED WILL TAKE ALL THE SPACE AVAILABLE
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -63,6 +65,7 @@ class TaskScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
+              child: TaskList(),
             ),
           )
         ],
