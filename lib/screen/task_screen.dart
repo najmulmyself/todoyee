@@ -54,6 +54,7 @@ class TaskScreen extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
+                
               ],
             ),
           ),

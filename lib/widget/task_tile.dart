@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class TaskTile extends StatefulWidget {
-  const TaskTile({
-    Key? key,
-  }) : super(key: key);
-
   @override
   State<TaskTile> createState() => _TaskTileState();
 }
 
 class _TaskTileState extends State<TaskTile> {
   bool isChecked = false;
+  void funcCallback(bool ?value) {
+    setState(() {
+      isChecked = value!;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -19,16 +21,33 @@ class _TaskTileState extends State<TaskTile> {
         style: TextStyle(
             decoration: isChecked ? TextDecoration.lineThrough : null),
       ),
-      trailing: Checkbox(
-        activeColor: Colors.blueAccent,
-        value: isChecked,
-        onChanged: (value) {
-          // THIS VALUE WILL CHANGE EVERYTIME WHEN USER CLICK ON BUTTON
-          setState(() {
-            isChecked = value!;
-          });
-        },
+      trailing: TaskCheckBox(
+        checkBoxState: isChecked,
+        toggleCheckBoxState: funcCallback,
       ),
+    );
+  }
+}
+
+class TaskCheckBox extends StatelessWidget {
+  final bool? checkBoxState;
+  Function(bool?) ? toggleCheckBoxState;
+  TaskCheckBox({this.checkBoxState, this.toggleCheckBoxState});
+  @override
+  Widget build(BuildContext context) {
+    return Checkbox(
+      activeColor: Colors.blueAccent,
+      value: checkBoxState,
+      // onChanged: (value) {
+      //   // THIS VALUE WILL CHANGE EVERYTIME WHEN USER CLICK ON BUTTON
+      //   // setState(
+      //   //   () {
+      //   //     isChecked = value!;
+      //   //   },
+      //   // );
+
+      // },
+      onChanged: toggleCheckBoxState,
     );
   }
 }
