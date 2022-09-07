@@ -1,10 +1,31 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:todoyee/models/task.dart';
 import 'package:todoyee/screen/add_task_screen.dart';
 import 'package:todoyee/widget/task_list.dart';
 
-class TaskScreen extends StatelessWidget {
+class TaskScreen extends StatefulWidget {
+  @override
+  State<TaskScreen> createState() => _TaskScreenState();
+}
+
+class _TaskScreenState extends State<TaskScreen> {
+  List<Task> tasks = [
+    Task(
+      title: 'Buy Milk',
+      isDone: false,
+    ),
+    Task(
+      title: 'Buy Egggs',
+      isDone: false,
+    ),
+    Task(
+      title: 'Buy Bread',
+      isDone: false,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +35,17 @@ class TaskScreen extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => AddTaskScreen(),
+            builder: (context) => AddTaskScreen(
+              addTaskCallback: (newTaskTile) {
+                // print(newTaskTile);
+                setState(() {
+                  tasks.add(Task(
+                    title: newTaskTile,
+                    // isDone: false, // default value is false
+                  ));
+                });
+              },
+            ),
           );
         },
       ),
@@ -48,13 +79,12 @@ class TaskScreen extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '12 Tasks',
+                  '${tasks.length} Tasks',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                   ),
                 ),
-                
               ],
             ),
           ),
@@ -72,7 +102,7 @@ class TaskScreen extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: TaskList(),
+              child: TaskList(tasks),
             ),
           ),
         ],
