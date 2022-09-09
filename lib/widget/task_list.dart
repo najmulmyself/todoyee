@@ -1,5 +1,6 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
-import 'package:todoyee/models/task.dart';
 import 'package:todoyee/widget/task_tile.dart';
 
 class TaskList extends StatefulWidget {
