@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todoyee/models/notifier.dart';
 
 class ProviderTask extends StatelessWidget {
-  const ProviderTask({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    final a = ChangesData();
+    String b = a.helloText;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Provider Task'),
@@ -15,6 +16,8 @@ class ProviderTask extends StatelessWidget {
       body: Column(
         children: [
           Text(Provider.of<String>(context)),
+          TextField(),
+          Text(b),
         ],
       ),
     );
