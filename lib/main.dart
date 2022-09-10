@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:todoyee/models/notifier.dart';
 import 'package:todoyee/screen/provider_task.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +13,11 @@ class MyApp extends StatelessWidget {
   String data = 'Hello World from the Parallel Universe';
   @override
   Widget build(BuildContext context) {
-    return Provider<String>(
-      create: (context) => data,
+    return MultiProvider(
+      providers: [
+        Provider<String>(create: (context) => data,),
+        ChangeNotifierProvider<ChangesData>(create: (context) => ChangesData(),),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
