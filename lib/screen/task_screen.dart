@@ -7,12 +7,7 @@ import 'package:todoyee/models/task_data.dart';
 import 'package:todoyee/screen/add_task_screen.dart';
 import 'package:todoyee/widget/task_list.dart';
 
-class TaskScreen extends StatefulWidget {
-  @override
-  State<TaskScreen> createState() => _TaskScreenState();
-}
-
-class _TaskScreenState extends State<TaskScreen> {
+class TaskScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +88,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: TaskList(Provider.of<TaskData>(context).tasks),
+              child: TaskList(),
             ),
           ),
         ],
