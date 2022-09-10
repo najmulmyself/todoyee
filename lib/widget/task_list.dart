@@ -23,6 +23,10 @@ class TaskList extends StatelessWidget {
                 //     widget.tasks[index].toggleDone();
                 //   },
                 // );
+                taskData.updateTask(taskData.tasks[index]);
+              },
+              longPressCallback: (){
+                taskData.deleteTask(taskData.tasks[index]);
               },
             );
           },
