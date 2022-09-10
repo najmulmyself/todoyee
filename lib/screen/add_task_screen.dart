@@ -3,10 +3,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoyee/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-
-  final Function ? addTaskCallback;
+  final Function? addTaskCallback;
 
   const AddTaskScreen({super.key, this.addTaskCallback});
   @override
@@ -55,7 +56,11 @@ class AddTaskScreen extends StatelessWidget {
                     )),
                 onPressed: () {
                   // print(newTaskTitle);
-                  addTaskCallback!(newTaskTitle);
+                  // addTaskCallback!(newTaskTitle);
+                  Provider.of<TaskData>(
+                    context,
+                    listen: false,
+                  ).addTask(newTaskTitle!);
                   Navigator.pop(context);
                 },
                 child: Text('Add'),
