@@ -7,18 +7,25 @@ import 'package:todoyee/models/notifier.dart';
 class ProviderTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final a = ChangesData();
-    String b = a.helloText;
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Provider Task'),
-      ),
-      body: Column(
-        children: [
-          Text(Provider.of<String>(context)),
-          TextField(),
-          Text(b),
-        ],
+    final data = ChangesData();
+
+    return ChangeNotifierProvider<ChangesData>(
+      create: (context) => data,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Provider Task'),
+        ),
+        body: Column(
+          children: [
+            Text(Provider.of<String>(context)),
+            TextField(
+              onChanged: (newValue) {
+                Provider.of<ChangesData>(context).changeText(newValue);
+              },
+            ),
+            Text(Provider.of<ChangesData>(context).helloText),
+          ],
+        ),
       ),
     );
   }
